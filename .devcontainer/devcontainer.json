@@ -1,0 +1,58 @@
+{
+  "name": "esp-idf-v6_1-devcontainer",
+  
+  "image": "ghcr.io/tamba91/esp-idf-v6_1-devcontainer:latest",
+  
+  // "build": {
+  //   "dockerfile": "Containerfile",
+  //   "context": "."
+  // },
+  
+  "remoteUser": "esp32",
+  "containerUser": "esp32",
+  "updateRemoteUserUID": true,
+  "containerEnv": {
+    "IDF_PATH": "/home/esp32/esp/esp-idf/",
+    "IDF_TOOLS_PATH": "/home/esp32/.espressif",
+    "IDF_PYTHON_ENV_PATH": "/home/esp32/.espressif/python_env/idf6.1_py3.13_env"
+  },
+  "runArgs": [
+    "--name=devcontainer-${localWorkspaceFolderBasename}",
+    "--hostname=${localWorkspaceFolderBasename}",
+    "--userns=keep-id",
+    "--device=/dev/ttyACM0",
+    "--volume=/dev/bus/usb:/dev/bus/usb:rw",
+    "--annotation=run.oci.keep_original_groups=1"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "espressif.esp-idf-extension",
+        "ms-vscode.cpptools-extension-pack"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "idf.showOnboardingOnInit": false,
+        "idf.espIdfPath": "/home/esp32/esp/esp-idf",
+        "idf.toolsPath": "/home/esp32/.espressif",
+        "idf.pythonInstallPath": "/usr/bin/python3",
+        "idf.gitPath": "/usr/bin/git",
+        "idf.enableCCache": true,
+        "idf.extensionActivationMode": "always",
+        "cmake.generator": "Ninja",
+        "cmake.configureOnOpen": false,
+        "cmake.configureOnEdit": false,
+        "cmake.automaticReconfigure": false,
+        "cmake.showSystemKits": false,
+        "cmake.enableAutomaticKitScan": false,
+        "cmake.ignoreCMakeListsMissing": true,
+        "cmake.options.advanced": {
+          "build": { "statusBarVisibility": "hidden" },
+          "launch": { "statusBarVisibility": "hidden" },
+          "debug": { "statusBarVisibility": "hidden" }
+        }
+      }
+    }
+  }
+}
+
